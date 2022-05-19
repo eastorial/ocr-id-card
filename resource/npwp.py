@@ -2,7 +2,7 @@ import easyocr
 import cv2
 
 from flask import jsonify
-from ocrapp import similar, get_count_digits
+from resource.ocrapp import similar, get_count_digits
 
 
 def npwp_app(path):

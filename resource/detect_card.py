@@ -1,7 +1,7 @@
 import easyocr
 import cv2
 
-from ocrapp import similar
+from resource.ocrapp import similar
 
 
 def detect(path):

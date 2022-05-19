@@ -2,7 +2,7 @@ import easyocr
 import pytesseract
 
 from flask import jsonify
-from ocrapp import similar, get_count_digits
+from resource.ocrapp import similar, get_count_digits
 
 
 def sim_app(path):

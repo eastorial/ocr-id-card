@@ -1,6 +1,6 @@
 OCR for SIM, KTP, BPJS, and NPWP
 
-how to run :
+how to run : <br>
 create virtual environment
 
 <ol>

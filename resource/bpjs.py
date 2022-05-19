@@ -3,7 +3,7 @@ import easyocr
 import pytesseract
 
 from flask import jsonify
-from ocrapp import detect, similar
+from resource.ocrapp import detect, similar
 
 
 def bpjs_app(path):
