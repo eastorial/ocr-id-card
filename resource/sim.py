@@ -5,9 +5,8 @@ from flask import jsonify
 from resource.ocrapp import similar, get_count_digits
 
 
-def sim_app(path):
+def sim_app(reader, path):
     img = path
-    reader = easyocr.Reader(['id'], gpu=False)
     result = reader.readtext(path, detail=1)
 
     sim_text = ''

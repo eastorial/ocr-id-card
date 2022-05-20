@@ -4,9 +4,8 @@ import cv2
 from resource.ocrapp import similar
 
 
-def detect(path):
+def detect(reader, path):
     img = cv2.imread(path)
-    reader = easyocr.Reader(['id'], gpu=False)
     result = reader.readtext(img, detail=1)
 
     card_type = ''

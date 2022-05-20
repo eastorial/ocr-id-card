@@ -6,10 +6,9 @@ from flask import jsonify
 from resource.ocrapp import detect, similar
 
 
-def ktp_app(path):
-    img = detect(path)
+def ktp_app(reader, path):
 
-    reader = easyocr.Reader(['id'], gpu=False)
+    img = detect(path)
     result = reader.readtext(img, detail=1)
 
     provinsi_text = ''

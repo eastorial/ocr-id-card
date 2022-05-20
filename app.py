@@ -1,4 +1,5 @@
 import os
+import easyocr
 
 from flask import Flask, jsonify, request
 
@@ -31,13 +32,14 @@ def index():
     path = os.path.join(app.config['UPLOAD_FOLDER'], file_upload.filename)
     file_upload.save(path)
 
-    card_type = detect(path)
+    reader = easyocr.Reader(['id'], gpu=False)
+    card_type = detect(reader, path)
 
     if card_type == 'KTP':
-        return ktp_app(path)
+        return ktp_app(reader, path)
     if card_type == 'SIM':
-        return sim_app(path)
+        return sim_app(reader, path)
     if card_type == 'NPWP':
-        return npwp_app(path)
+        return npwp_app(reader, path)
     if card_type == 'BPJS':
-        return bpjs_app(path)
+        return bpjs_app(reader, path)

@@ -5,10 +5,9 @@ from flask import jsonify
 from resource.ocrapp import similar, get_count_digits
 
 
-def npwp_app(path):
+def npwp_app(reader, path):
 
     img = cv2.imread(path)
-    reader = easyocr.Reader(['id'], gpu=False)
     result = reader.readtext(img, detail=1)
 
     no_text = ""

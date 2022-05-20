@@ -6,9 +6,8 @@ from flask import jsonify
 from resource.ocrapp import detect, similar
 
 
-def bpjs_app(path):
+def bpjs_app(reader, path):
     img = cv2.imread(path)
-    reader = easyocr.Reader(['id'], gpu=False)
     result = reader.readtext(path, detail=1)
 
     no_text = ''
