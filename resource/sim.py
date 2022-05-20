@@ -11,7 +11,7 @@ def sim_app(path):
     result = reader.readtext(path, detail=1)
 
     sim_text = ''
-    nik_text = ''
+    no_text = ''
     nama_text = ''
     ttl_text = ''
     jk_text = ''
@@ -49,11 +49,25 @@ def sim_app(path):
 
         if result[key][1].replace("-", "").isnumeric():
             if get_count_digits(int(result[key][1].replace("-", ""))) > 9:
-                nik_text = result[key][1]  # get NIK
+                no_text = result[key][1]  # get NIK
                 nama_text = result[key + 1][1]  # get Nama
                 ttl_text = result[key + 2][1]  # get TTL
                 jk_text = result[key + 3][1].split("-")[1]
-                gd_text = result[key + 3][1].split("-")[0]
+
+                gd_text_idx = result[key + 3][1].split("-")[0]
+                if 'O' in gd_text_idx:
+                    gd_text = 'O'
+                if 'o' in gd_text_idx:
+                    gd_text = 'O'
+                if '0' in gd_text_idx:
+                    gd_text = 'O'
+                if 'AB' in gd_text_idx:
+                    gd_text = 'AB'
+                if 'B' in gd_text_idx:
+                    gd_text = 'B'
+                if 'A' in gd_text_idx:
+                    gd_text = 'A'
+
                 alamat_text = result[key + 4][1] + ' ' + \
                     result[key + 5][1] + ' ' + result[key + 6][1]
                 pekerjaan_text = result[key + 7][1]
@@ -61,7 +75,7 @@ def sim_app(path):
                 masa_berlaku_text = result[key + 9][1]
 
     # print('SIM : ' + sim_text)
-    # print('NIK : ' + nik_text)
+    # print('NIK : ' + no_text)
     # print('Nama : ' + nama_text)
     # print('TTL : ' + ttl_text)
     # print('JK : ' + jk_text)
@@ -74,8 +88,9 @@ def sim_app(path):
     return jsonify({
         "card_type": "SIM",
         "data": {
+            'sim_type': sim_text,
             'provinsi': provinsi_text,
-            'nik': nik_text,
+            'no': no_text,
             'nama': nama_text,
             'ttl': ttl_text,
             'jk': jk_text,
